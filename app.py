@@ -11,9 +11,6 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-class feature_selection:
-
-data = pd.read_csv("wine-reviews/winemag-data_first150k.csv")
 
     def pastel_plot(df, x, y):
         plt.figure(figsize = (15,6))
@@ -23,10 +20,10 @@ data = pd.read_csv("wine-reviews/winemag-data_first150k.csv")
         locs, labels = plt.xticks()
         plt.show()
 
-        temp = data["points"].value_counts()
+temp = data["points"].value_counts()
+pastel_plot(data,temp.index, temp.values)
 
-        pastel_plot(data,temp.index, temp.values)
-
+data = pd.read_csv("wine-reviews/winemag-data_first150k.csv")
 X = data.drop(columns=['points'])
 
 X=X.fillna(-1)
@@ -39,22 +36,22 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,random_s
 
 X_train, X_valid, y_train, y_valid = train_test_split(X_train, y_train, test_size=0.2,random_state=52)
 
-    def perform_model(X_train, y_train,X_valid, y_valid,X_test, y_test):
-        model = CatBoostRegressor(
-            random_seed = 400,
-            loss_function = 'RMSE',
-            iterations=400,
-        )
+def perform_model(X_train, y_train,X_valid, y_valid,X_test, y_test):
+    model = CatBoostRegressor(
+        random_seed = 400,
+        loss_function = 'RMSE',
+        iterations=400,
+    )
 
-        trained_model = model.fit(
-            X_train, y_train,
-            cat_features = categorical_features_indices,
-            eval_set=(X_valid, y_valid),
-            verbose=False
-        )
-        print("RMSE on training data: "+ model.score(X_train, y_train).astype(str))
-        print("RMSE on test data: "+ model.score(X_test, y_test).astype(str))
-        return model
+    trained_model = model.fit(
+        X_train, y_train,
+        cat_features = categorical_features_indices,
+        eval_set=(X_valid, y_valid),
+        verbose=False
+    )
+    print("RMSE on training data: "+ model.score(X_train, y_train).astype(str))
+    print("RMSE on test data: "+ model.score(X_test, y_test).astype(str))
+    return model
 
 model=perform_model(X_train, y_train,X_valid, y_valid,X_test, y_test)
 
@@ -87,7 +84,6 @@ def make_template():
 
 @app.route('/')
 def index():
-    feature_selection()
     return make_template()
 
 
