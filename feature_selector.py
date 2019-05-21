@@ -13,26 +13,25 @@ def pastel_plot(df, x, y):
     sns.barplot(x = x, y=y, data=data)
     locs, labels = plt.xticks()
     plt.show()
+
 temp = data["points"].value_counts()
 
 pastel_plot(data,temp.index, temp.values)
 
 X = data.drop(columns=['points'])
-#X = X.drop(columns=['description'])
 
 X=X.fillna(-1)
 print(X.columns)
 
-categorical_features_indices =[0,1,2,3,4,5,6,7,8]
+
+categorical_features_indices =[0,1,2,3,4,5,6,7,8,9]
 y=data['points']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
-                                                    random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,random_state=42)
 
-X_train, X_valid, y_train, y_valid = train_test_split(X_train, y_train, test_size=0.2,
-                                                    random_state=52)
+X_train, X_valid, y_train, y_valid = train_test_split(X_train, y_train, test_size=0.2,random_state=52)
 
-                                                    def perform_model(X_train, y_train,X_valid, y_valid,X_test, y_test):
+def perform_model(X_train, y_train,X_valid, y_valid,X_test, y_test):
     model = CatBoostRegressor(
         random_seed = 400,
         loss_function = 'RMSE',
