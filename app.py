@@ -11,7 +11,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-Class feature_selection:
+class feature_selection:
 
     data = pd.read_csv("wine-reviews/winemag-data_first150k.csv")
 
