@@ -1,5 +1,5 @@
 plotly==2.0.12
-sklearn==0.21.1
+sklearn
 catboost
 pandas==0.24.2
 matplotlib==3.1.0
