@@ -11,6 +11,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+data = pd.read_csv("wine-reviews/winemag-data_first150k.csv")
 
 def pastel_plot(df, x, y):
     plt.figure(figsize = (15,6))
@@ -23,7 +24,6 @@ def pastel_plot(df, x, y):
 temp = data["points"].value_counts()
 pastel_plot(data,temp.index, temp.values)
 
-data = pd.read_csv("wine-reviews/winemag-data_first150k.csv")
 X = data.drop(columns=['points'])
 
 X=X.fillna(-1)
