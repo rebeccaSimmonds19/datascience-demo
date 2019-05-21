@@ -12,13 +12,13 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-    def pastel_plot(df, x, y):
-        plt.figure(figsize = (15,6))
-        plt.title('Points histogram - whole dataset')
-        sns.set_color_codes("pastel")
-        sns.barplot(x = x, y=y, data=data)
-        locs, labels = plt.xticks()
-        plt.show()
+def pastel_plot(df, x, y):
+    plt.figure(figsize = (15,6))
+    plt.title('Points histogram - whole dataset')
+    sns.set_color_codes("pastel")
+    sns.barplot(x = x, y=y, data=data)
+    locs, labels = plt.xticks()
+    plt.show()
 
 temp = data["points"].value_counts()
 pastel_plot(data,temp.index, temp.values)
