@@ -56,12 +56,10 @@ class feature_selection:
         print("RMSE on test data: "+ model.score(X_test, y_test).astype(str))
         return model
 
-        model=perform_model(X_train, y_train,X_valid, y_valid,X_test, y_test)
+    model=perform_model(X_train, y_train,X_valid, y_valid,X_test, y_test)
 
-        feature_score = pd.DataFrame(list(zip(X.dtypes.index, model.get_feature_importance(Pool(X, label=y, cat_features=categorical_features_indices)))),
-                columns=['Feature','Score'])
-
-                feature_score = feature_score.sort_values(by='Score', ascending=False, inplace=False, kind='quicksort', na_position='last')
+    feature_score = pd.DataFrame(list(zip(X.dtypes.index, model.get_feature_importance(Pool(X, label=y, cat_features=categorical_features_indices)))),columns=['Feature','Score'])
+    feature_score = feature_score.sort_values(by='Score', ascending=False, inplace=False, kind='quicksort', na_position='last')
 
     plt.rcParams["figure.figsize"] = (12,7)
     ax = feature_score.plot('Feature', 'Score', kind='bar', color='c')
