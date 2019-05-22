@@ -19,7 +19,7 @@ def pastel_plot(df, x, y):
     sns.set_color_codes("pastel")
     sns.barplot(x = x, y=y, data=data)
     locs, labels = plt.xticks()
-    plt.show()
+    plt.show(filename="feature.html")
 
 temp = data["points"].value_counts()
 pastel_plot(data,temp.index, temp.values)
@@ -30,7 +30,7 @@ def make_template():
     if not os.path.exists(new_path):
         os.makedirs(new_path)
         # move the file to the templates dir
-        shutil.move('/opt/app-root/src/map.html', new_path)
+        shutil.move('/opt/app-root/src/feature.html', new_path)
     return render_template("features.html", title='Feature selection')
 
 @app.route('/')
