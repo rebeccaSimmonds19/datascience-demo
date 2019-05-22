@@ -2,8 +2,7 @@ from sklearn.model_selection import train_test_split
 from catboost import Pool, CatBoostRegressor, cv
 import pandas as pd
 import matplotlib.pyplot as plt
-import plotly.plotly as py
-import plotly.plotly as py
+from plotly.offline import plot
 import plotly.graph_objs as go
 import seaborn as sns
 import os
@@ -29,11 +28,11 @@ def pastel_plot(x, y):
         title="feature selection"
 
     )
+    print('in pastel plot')
     #sns.barplot(x = x, y=y, data=data)
-    locs, labels = plt.xticks()
     #plt.show(filename="feature.html")
     fig = go.Figure(data=data, layout=layout)
-    py.plot(fig, filename='features.html')
+    plot(fig, filename='features.html')
 temp = data["points"].value_counts()
 pastel_plot(temp.index, temp.values)
 
