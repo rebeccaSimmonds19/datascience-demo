@@ -15,10 +15,11 @@ app = Flask(__name__)
 
 data = pd.read_csv("wine-reviews/winemag-data_first150k.csv")
 
-def pastel_plot(x, y):
+def pastel_plot():
+    temp = data["points"].value_counts()
     data = [go.Bar(
-            x=x,
-            y=y,
+            x=temp.index,
+            y=temp.values,
             marker=dict(
             color='purple'
             )
@@ -31,9 +32,8 @@ def pastel_plot(x, y):
     #sns.barplot(x = x, y=y, data=data)
     #plt.show(filename="feature.html")
     fig = go.Figure(data=data, layout=layout)
-    print(offline.plot(fig, filename='features.html'))
-temp = data["points"].value_counts()
-pastel_plot(temp.index, temp.values)
+    print(plot(fig, filename='features.html'))
+    pastel_plot(temp.index, temp.values)
 
 def make_template():
     # make the templates dir
