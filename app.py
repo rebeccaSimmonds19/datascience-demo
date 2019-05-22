@@ -28,11 +28,10 @@ def pastel_plot(x, y):
         title="feature selection"
 
     )
-    print('in pastel plot')
     #sns.barplot(x = x, y=y, data=data)
     #plt.show(filename="feature.html")
     fig = go.Figure(data=data, layout=layout)
-    plot(fig, filename='features.html')
+    print(plot(fig, filename='features.html'))
 temp = data["points"].value_counts()
 pastel_plot(temp.index, temp.values)
 
