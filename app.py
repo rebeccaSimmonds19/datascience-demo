@@ -2,6 +2,9 @@ from sklearn.model_selection import train_test_split
 from catboost import Pool, CatBoostRegressor, cv
 import pandas as pd
 import matplotlib.pyplot as plt
+import plotly.plotly as py
+import plotly.plotly as py
+import plotly.graph_objs as go
 import seaborn as sns
 import os
 from os import environ
@@ -13,16 +16,26 @@ app = Flask(__name__)
 
 data = pd.read_csv("wine-reviews/winemag-data_first150k.csv")
 
-def pastel_plot(df, x, y):
-    plt.figure(figsize = (15,6))
-    plt.title('Points histogram - whole dataset')
-    sns.set_color_codes("pastel")
-    sns.barplot(x = x, y=y, data=data)
-    locs, labels = plt.xticks()
-    plt.show(filename="feature.html")
+def pastel_plot(x, y):
+    data = [go.Bar(
+            x=x,
+            y=y,
+            marker=dict(
+            color='purple'
+            )
+    )]
+    layout = go.Layout(
+        autosize=True,
+        title="feature selection"
 
+    )
+    #sns.barplot(x = x, y=y, data=data)
+    locs, labels = plt.xticks()
+    #plt.show(filename="feature.html")
+    fig = go.Figure(data=data, layout=layout)
+    py.plot(fig, filename='features.html')
 temp = data["points"].value_counts()
-pastel_plot(data,temp.index, temp.values)
+pastel_plot(temp.index, temp.values)
 
 def make_template():
     # make the templates dir
