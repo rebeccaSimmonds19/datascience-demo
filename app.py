@@ -33,7 +33,6 @@ def plot():
     #plt.show(filename="feature.html")
     fig = go.Figure(data=data, layout=layout)
     print(plot(fig, filename='features.html'))
-    pastel_plot(temp.index, temp.values)
 
 def make_template():
     # make the templates dir
