@@ -31,7 +31,7 @@ def pastel_plot(x, y):
     #sns.barplot(x = x, y=y, data=data)
     #plt.show(filename="feature.html")
     fig = go.Figure(data=data, layout=layout)
-    print(plot(fig, filename='features.html'))
+    print(offline.plot(fig, filename='features.html'))
 temp = data["points"].value_counts()
 pastel_plot(temp.index, temp.values)
 
