@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 data = pd.read_csv("wine-reviews/winemag-data_first150k.csv")
 
-def pastel_plot():
+def plot():
     temp = data["points"].value_counts()
     data = [go.Bar(
             x=temp.index,
@@ -46,6 +46,7 @@ def make_template():
 
 @app.route('/')
 def index():
+    plot()
     return make_template()
 
 
