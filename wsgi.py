@@ -29,8 +29,9 @@ def index():
         autosize=True,
         title="feature selection"
         )
+    fig = go.Figure(data=data, layout=layout)
+    offline.plot(fig)
     template = render_template("temp-plot.html", title='Plot')
-    figure = go.Figure(data=data, layout=layout) # make the templates dir
     new_path = '/opt/app-root/src/templates'
     if not os.path.exists(new_path):
         os.makedirs(new_path)
@@ -40,4 +41,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run()
+    application.run()
