@@ -30,15 +30,17 @@ def index():
         title="feature selection"
         )
     fig = go.Figure(data=data, layout=layout)
-    offline.plot(fig)
-    template = render_template("temp-plot.html", title='Plot')
+    template = offline.plot(fig)
+    print(template)
+    return make_template()
+def make_template():
+    # make the templates dir
     new_path = '/opt/app-root/src/templates'
     if not os.path.exists(new_path):
         os.makedirs(new_path)
         # move the file to the templates dir
-        shutil.move('/opt/app-root/src/temp-plot.html', new_path)
-    return template
-
+        shutil.move('/opt/app-root/src/template.html', new_path)
+    return render_template("temp-plot.html", title='Plot')
 
 if __name__ == '__main__':
     application.run()
