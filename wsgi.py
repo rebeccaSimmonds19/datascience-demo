@@ -9,7 +9,7 @@ import os
 from os import environ
 import shutil
 import argparse
-from flask import Flask
+from flask import Flask, render_template
 import json
 
 application = Flask(__name__)
@@ -31,8 +31,8 @@ def index():
         )
 
     figure = go.Figure(data=data, layout=layout)
-    print('offline:  '+offline.plot(figure))
-    return offline.plot(figure)
+    return render_template("temp-plot.html", title='Plot')
+
 
 if __name__ == '__main__':
     app.run()
