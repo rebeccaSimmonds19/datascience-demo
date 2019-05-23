@@ -9,34 +9,29 @@ import os
 from os import environ
 import shutil
 import argparse
-from flask import Flask, render_template
+from flask import Flask
 import json
 
 app = Flask(__name__)
-
-def plot():
-    data = pd.read_csv("wine-reviews/winemag-data_first150k.csv")
-    temp = data["points"].value_counts()
-    data = [go.Bar(
-            x=temp.index,
-            y=temp.values,
-            marker=dict(
-            color='purple'
-            )
-    )]
-    layout = go.Layout(
-        autosize=True,
-        title="feature selection"
-)
-
-    figure = go.Figure(data=data, layout=layout)
-    return offline.plot(figure)
-
-
 @app.route('/')
 def index():
-    return plot()
+    def plot():
+        data = pd.read_csv("wine-reviews/winemag-data_first150k.csv")
+        temp = data["points"].value_counts()
+        data = [go.Bar(
+                x=temp.index,
+                y=temp.values,
+                marker=dict(
+                color='purple'
+                )
+        )]
+        layout = go.Layout(
+            autosize=True,
+            title="feature selection"
+    )
 
+        figure = go.Figure(data=data, layout=layout)
+        return offline.plot(figure)
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 9999))
