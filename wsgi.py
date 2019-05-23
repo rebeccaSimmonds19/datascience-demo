@@ -34,5 +34,4 @@ def index():
         return offline.plot(figure)
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 9999))
-    app.run(host='0.0.0.0', port=port)
+    app.run()
