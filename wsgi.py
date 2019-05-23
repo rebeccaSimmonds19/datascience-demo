@@ -29,14 +29,14 @@ def index():
         autosize=True,
         title="feature selection"
         )
-
+    template = render_template("temp-plot.html", title='Plot')
     figure = go.Figure(data=data, layout=layout) # make the templates dir
     new_path = '/opt/app-root/src/templates'
     if not os.path.exists(new_path):
         os.makedirs(new_path)
         # move the file to the templates dir
         shutil.move('/opt/app-root/src/temp-plot.html', new_path)
-    return render_template("temp-plot.html", title='Plot')
+    return template
 
 
 if __name__ == '__main__':
