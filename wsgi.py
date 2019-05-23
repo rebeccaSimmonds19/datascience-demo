@@ -39,7 +39,7 @@ def make_template():
     if not os.path.exists(new_path):
         os.makedirs(new_path)
         # move the file to the templates dir
-        shutil.move('/opt/app-root/src/template.html', new_path)
+        shutil.move('/opt/app-root/src/temp-plot.html', new_path)
     return render_template("temp-plot.html", title='Plot')
 
 if __name__ == '__main__':
