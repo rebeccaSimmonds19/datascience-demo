@@ -12,8 +12,8 @@ import argparse
 from flask import Flask
 import json
 
-app = Flask(__name__)
-@app.route('/')
+application = Flask(__name__)
+@application.route('/')
 def index():
 
     data = pd.read_csv("wine-reviews/winemag-data_first150k.csv")
