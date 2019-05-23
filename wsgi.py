@@ -32,7 +32,7 @@ def index():
 
     figure = go.Figure(data=data, layout=layout)
     print('offline:  '+offline.plot(figure))
-    return 'hello'
+    return offline.plot(figure)
 
 if __name__ == '__main__':
     app.run()
