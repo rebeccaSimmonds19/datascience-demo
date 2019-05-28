@@ -27,7 +27,7 @@ def index():
     )]
     layout = go.Layout(
         autosize=True,
-        title="feature selection"
+        title="points distribution"
         )
     fig = go.Figure(data=data, layout=layout)
     template = offline.plot(fig)
